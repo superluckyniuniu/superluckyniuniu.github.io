@@ -17,6 +17,25 @@
   
   
   <entry>
+    <title>最小堆</title>
+    <link href="/2024/03/19/%E6%9C%80%E5%B0%8F%E5%A0%86-title/"/>
+    <url>/2024/03/19/%E6%9C%80%E5%B0%8F%E5%A0%86-title/</url>
+    
+    <content type="html"><![CDATA[<h2 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h2><p>力扣第23题：合并k个升序链表</p><p>给你一个链表数组，每个链表都已经按升序排列。</p><p>请你将所有链表合并到一个升序链表中，返回合并后的链表。</p><p><strong>示例 1：</strong></p><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs clean">输入：lists = [[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">6</span>]]<br>输出：[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]<br>解释：链表数组如下：<br>[<br>  <span class="hljs-number">1</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">5</span>,<br>  <span class="hljs-number">1</span>-&gt;<span class="hljs-number">3</span>-&gt;<span class="hljs-number">4</span>,<br>  <span class="hljs-number">2</span>-&gt;<span class="hljs-number">6</span><br>]<br>将它们合并到一个有序链表中得到。<br><span class="hljs-number">1</span>-&gt;<span class="hljs-number">1</span>-&gt;<span class="hljs-number">2</span>-&gt;<span class="hljs-number">3</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">5</span>-&gt;<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：lists = <span class="hljs-comment">[]</span><br>输出：<span class="hljs-comment">[]</span><br></code></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：lists = <span class="hljs-string">[[]]</span><br>输出：[]<br></code></pre></td></tr></table></figure><p><a href="https://leetcode.cn/problems/merge-k-sorted-lists/description/">23. 合并 K 个升序链表 - 力扣（LeetCode）</a></p><h2 id="最小堆"><a href="#最小堆" class="headerlink" title="最小堆"></a>最小堆</h2><p>定义：<br>1、堆是一颗完全二叉树；</p><p>2、堆中的某个结点的值总是大于等于（最大堆）或小于等于（最小堆）其孩子结点的值。</p><p>3、堆中每个结点的子树都是堆树。</p><p><img src="https://img-blog.csdn.net/20180917200546658?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bW1lcmxx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><img src="https://img-blog.csdn.net/20180917200333453?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bW1lcmxx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p><h2 id="python-heapq库"><a href="#python-heapq库" class="headerlink" title="python heapq库"></a>python heapq库</h2><p>最小堆的编写用到heapq库,堆的使用一般用于排序</p><p><a href="https://docs.python.org/zh-cn/3/library/heapq.html">heapq — 堆队列算法 — Python 3.12.2 文档</a></p><h3 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h3><p>res.append(path)相当于append进去path的引用，如果你此时改path，那么res里面的结果也会变，这两是指向同一个对象的。path[:]相当于重新赋值了一个对象</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2024/03/18/hello-world/"/>
     <url>/2024/03/18/hello-world/</url>
