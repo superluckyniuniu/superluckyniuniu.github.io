@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="SuperNiuNiu">
 <meta property="og:description" content="[TOC] 创新点【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。 【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）  【导致】 不适当统计量的 【原因】： 【一方面】  现有的大多数方法忽略了输入">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:\Hexo\picture\%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
+<meta property="og:image" content="http://example.com/picture/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
 <meta property="og:image" content="http://example.com/picture/image-20240326155343938.png">
 <meta property="og:image" content="http://example.com/picture/image-20240326160000454.png">
 <meta property="article:published_time" content="2024-03-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-26T08:11:28.280Z">
+<meta property="article:modified_time" content="2024-03-26T08:34:39.268Z">
 <meta property="article:author" content="SuperNiuNiu">
 <meta property="article:tag" content="文献阅读">
 <meta property="article:tag" content="非平稳时间序列">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:\Hexo\picture\%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
+<meta name="twitter:image" content="http://example.com/picture/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -327,7 +327,7 @@
 <p>【导致】 不适当统计量的 【原因】：</p>
 <p>【一方面】  现有的大多数方法忽略了输入序列和 horizon series 之间的分布差异，简单地利用输入序列的统计特性来非正则处理输出结果。</p>
 <p>【此外】先前的研究假设在归一化过程中，同一实例内的所有时间点具有相同的统计特性，全局实例归一化被广泛应用。 </p>
-<p>例：<img src="D:\Hexo\picture\微信截图_20240325145939.png" srcset="/img/loading.gif" lazyload alt="能源消费量及其日均值( MeanByDay )的预测实例说明。我们还将输入序列的均值和horizon series的均值绘制在图中。"></p>
+<p>例：<img src="/../../picture/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png" srcset="/img/loading.gif" lazyload alt="微信截图_20240325145939"></p>
 <center style="color:#C0C0C0;text-decoration:underline">能源消费量及其日均值( MeanByDay )的预测实例说明,还将输入序列的均值和horizon series的均值绘制在图中。.jpg</center>
 
 
@@ -348,10 +348,10 @@
 <blockquote>
 <p>基于间跨度T 将输入序列 x^i^ 分成 M 个 非重叠切片 {x^i^ <del>j</del>}^M^ <del>j&#x3D;1</del></p>
 <p>每个切片的均值和标准差计算如下：</p>
-<p><img src="/../../picture/image-20240326155343938.png" srcset="/img/loading.gif" lazyload alt="image-20240326155343938"></p>
+<p><img src="/.././picture/image-20240326155343938.png" srcset="/img/loading.gif" lazyload alt="image-20240326155343938"></p>
 <p>其中μ^i^ <del>j</del> ,σ^i^ <del>j</del> ∈ R^V*l^   , x^i^ <del>j,t</del> 是 切片x^i^ <del>j</del>  在t时间步长的值。</p>
 <p>通过原始输出谢列的每个切片的单独统计信息进行归一化，公式如下：</p>
-<p><img src="/../../picture/image-20240326160000454.png" srcset="/img/loading.gif" lazyload alt="image-20240326160000454"></p>
+<p><img src="/.././picture/image-20240326160000454.png" srcset="/img/loading.gif" lazyload alt="image-20240326160000454"></p>
 <p>ε 是一个小常数</p>
 <p>将每个切片归一化后，再按其原始时间顺序回复所有切片，并让没有非平稳因子的处理序列成为模型的新输入</p>
 </blockquote>
