@@ -16,24 +16,29 @@
   <meta name="author" content="SuperNiuNiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Python包含了一系列的魔法方法，用于实现对象之间直接比较，而不需要采用方法调用。同样也可以重载Python默认的比较方法，改变它们的行为。下面是这些方法的列表：  __cmp__(self, other)__cmp__ 是所有比较魔法方法中最基础的一个，它实际上定义了所有比较操作符的行为（&lt;,&#x3D;&#x3D;,!&#x3D;,等等），但是它可能不能按照你需要的方式工作（例如，判断">
+    <meta name="description" content="[TOC] 创新点【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。 【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）  【导致】 不适当统计量的 【原因】： 【一方面】  现有的大多数方法忽略了输入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="比较操作符">
-<meta property="og:url" content="http://example.com/2024/03/21/%E6%AF%94%E8%BE%83%E6%93%8D%E4%BD%9C%E7%AC%A6-title/index.html">
+<meta property="og:title" content="Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读">
+<meta property="og:url" content="http://example.com/2024/03/25/Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting-A-Temporal-Slice-Perspective-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="SuperNiuNiu">
-<meta property="og:description" content="Python包含了一系列的魔法方法，用于实现对象之间直接比较，而不需要采用方法调用。同样也可以重载Python默认的比较方法，改变它们的行为。下面是这些方法的列表：  __cmp__(self, other)__cmp__ 是所有比较魔法方法中最基础的一个，它实际上定义了所有比较操作符的行为（&lt;,&#x3D;&#x3D;,!&#x3D;,等等），但是它可能不能按照你需要的方式工作（例如，判断">
+<meta property="og:description" content="[TOC] 创新点【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。 【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）  【导致】 不适当统计量的 【原因】： 【一方面】  现有的大多数方法忽略了输入">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-21T07:16:47.000Z">
-<meta property="article:modified_time" content="2024-03-21T07:58:05.703Z">
+<meta property="og:image" content="d:\Hexo\picture\%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
+<meta property="og:image" content="http://example.com/picture/image-20240326155343938.png">
+<meta property="og:image" content="http://example.com/picture/image-20240326160000454.png">
+<meta property="article:published_time" content="2024-03-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-26T08:11:28.280Z">
 <meta property="article:author" content="SuperNiuNiu">
-<meta property="article:tag" content="基础">
+<meta property="article:tag" content="文献阅读">
+<meta property="article:tag" content="非平稳时间序列">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:\Hexo\picture\%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>比较操作符 - SuperNiuNiu</title>
+  <title>Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读 - SuperNiuNiu</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="比较操作符"></span>
+            <span id="subtitle" data-typed-text="Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读"></span>
           
         </div>
 
@@ -242,8 +247,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-21 15:16" pubdate>
-          2024年3月21日 下午
+        <time datetime="2024-03-25 00:00" pubdate>
+          2024年3月25日 凌晨
         </time>
       </span>
     
@@ -254,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          420 字
+          758 字
         
       </span>
     
@@ -265,7 +270,7 @@
         
         
         
-          4 分钟
+          7 分钟
         
       </span>
     
@@ -310,25 +315,47 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">比较操作符</h1>
+            <h1 id="seo-header">Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Python包含了一系列的魔法方法，用于实现对象之间直接比较，而不需要采用方法调用。同样也可以重载Python默认的比较方法，改变它们的行为。下面是这些方法的列表：</p>
-<ul>
-<li><code>__cmp__</code>(self, other)<br><code>__cmp__</code> 是所有比较魔法方法中最基础的一个，它实际上定义了所有比较操作符的行为（&lt;,&#x3D;&#x3D;,!&#x3D;,等等），但是它可能不能按照你需要的方式工作（例如，判断一个实例和另一个实例是否相等采用一套标准，而与判断一个实例是否大于另一实例采用另一套）。<code>__cmp__</code> 应该在 self &lt; other 时返回一个负整数，在 self &#x3D;&#x3D; other 时返回0，在 self &gt; other 时返回正整数。最好只定义你所需要的比较形式，而不是一次定义全部。如果你需要实现所有的比较形式，而且它们的判断标准类似，那么 <code>__cmp__</code> 是一个很好的方法，可以减少代码重复，让代码更简洁。</li>
-<li><code>__eq__</code>(self, other)<br>定义等于操作符(&#x3D;&#x3D;)的行为。</li>
-<li><code>__ne__</code>(self, other)<br>定义不等于操作符(!&#x3D;)的行为。</li>
-<li><code>__lt__</code>(self, other)<br>定义小于操作符(&lt;)的行为。</li>
-<li><code>__gt__</code>(self, other)<br>定义大于操作符(&gt;)的行为。</li>
-<li><code>__le__</code>(self, other)<br>定义小于等于操作符(&lt;)的行为。</li>
-<li><code>__ge__</code>(self, other)<br>定义大于等于操作符(&gt;)的行为。</li>
-</ul>
-<p>选自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/134649090">非常全的通俗易懂 Python 魔法方法指南（上） - 知乎 (zhihu.com)</a></p>
-<p>例：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-k-sorted-lists/solutions/2384305/liang-chong-fang-fa-zui-xiao-dui-fen-zhi-zbzx/">23. 合并 K 个升序链表 - 力扣（LeetCode）</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">ListNode.__lt__ = <span class="hljs-keyword">lambda</span> a, b: a.val &lt; b.val  <span class="hljs-comment"># 让堆可以比较节点大小</span><br></code></pre></td></tr></table></figure>
+                <p>[TOC]</p>
+<h1 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h1><p>【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。</p>
+<p>【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）</p>
+<hr>
+<p>【导致】 不适当统计量的 【原因】：</p>
+<p>【一方面】  现有的大多数方法忽略了输入序列和 horizon series 之间的分布差异，简单地利用输入序列的统计特性来非正则处理输出结果。</p>
+<p>【此外】先前的研究假设在归一化过程中，同一实例内的所有时间点具有相同的统计特性，全局实例归一化被广泛应用。 </p>
+<p>例：<img src="D:\Hexo\picture\微信截图_20240325145939.png" srcset="/img/loading.gif" lazyload alt="能源消费量及其日均值( MeanByDay )的预测实例说明。我们还将输入序列的均值和horizon series的均值绘制在图中。"></p>
+<center style="color:#C0C0C0;text-decoration:underline">能源消费量及其日均值( MeanByDay )的预测实例说明,还将输入序列的均值和horizon series的均值绘制在图中。.jpg</center>
 
+
+
+<p>尽管在时间上相关，但输入序列的均值与 horizon series 的显著( 075 ~ 1 . 5)不同，表明存在潜在的普遍分布差异。</p>
+<hr>
+<h1 id="方法简述"><a href="#方法简述" class="headerlink" title="方法简述"></a>方法简述</h1><p>【首先】  将输入序列分割成互不重叠的等大小切片</p>
+<p>【然后】  根据其统计特性对切片进行归一化处理，并将其输入到预测模型中。</p>
+<p>【同时】  使用一个统计量预测模块，根据输入的统计量来预测未来切片的分布。</p>
+<p>【最后】  利用估计良好的统计量将非平稳信息还原为预测模型的输出。</p>
+<h2 id="方法总结"><a href="#方法总结" class="headerlink" title="方法总结"></a>方法总结</h2><p>统计量预测模块独立地模拟统计量的演化趋势，SAN采用了更精确的统计量进行自适应的非正规化。</p>
+<p>【因此】 非平稳预测任务实际上被简化为统计预测和平稳预测。</p>
+<p>【此外】  SAN是一个模型无关的框架，可以应用于任意的预测模型。在一个广泛使用的基准数据集上进行了充分的实验。</p>
+<p>【实验结果表明】SAN优于先进的归一化方法，大幅度地提高了各种主流预测模型的性能。</p>
+<hr>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><blockquote>
+<p>对输入序列的每个切片进行归一化去除非平稳因子，通过非归一化以去除非平稳因子，再通过归一化将其恢复到输出序列</p>
+<blockquote>
+<p>基于间跨度T 将输入序列 x^i^ 分成 M 个 非重叠切片 {x^i^ <del>j</del>}^M^ <del>j&#x3D;1</del></p>
+<p>每个切片的均值和标准差计算如下：</p>
+<p><img src="/../../picture/image-20240326155343938.png" srcset="/img/loading.gif" lazyload alt="image-20240326155343938"></p>
+<p>其中μ^i^ <del>j</del> ,σ^i^ <del>j</del> ∈ R^V*l^   , x^i^ <del>j,t</del> 是 切片x^i^ <del>j</del>  在t时间步长的值。</p>
+<p>通过原始输出谢列的每个切片的单独统计信息进行归一化，公式如下：</p>
+<p><img src="/../../picture/image-20240326160000454.png" srcset="/img/loading.gif" lazyload alt="image-20240326160000454"></p>
+<p>ε 是一个小常数</p>
+<p>将每个切片归一化后，再按其原始时间顺序回复所有切片，并让没有非平稳因子的处理序列成为模型的新输入</p>
+</blockquote>
+</blockquote>
 
                 
               </div>
@@ -341,7 +368,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9F%BA%E7%A1%80/" class="print-no-link">#基础</a>
+        <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" class="print-no-link">#文献阅读</a>
+      
+        <a href="/tags/%E9%9D%9E%E5%B9%B3%E7%A8%B3%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="print-no-link">#非平稳时间序列</a>
       
     </div>
   
@@ -353,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>比较操作符</div>
-      <div>http://example.com/2024/03/21/比较操作符-title/</div>
+      <div>Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读</div>
+      <div>http://example.com/2024/03/25/Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting-A-Temporal-Slice-Perspective-文献阅读/</div>
     </div>
     <div class="license-meta">
       
@@ -366,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月21日</div>
+          <div>2024年3月25日</div>
         </div>
       
       
@@ -398,9 +427,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/25/Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting-A-Temporal-Slice-Perspective-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" title="Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读">
+                      <a href="/2024/03/25/kmb%E7%AE%97%E6%B3%95/" title="kmb算法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读</span>
+                        <span class="hidden-mobile">kmb算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -408,8 +437,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/19/%E6%9C%80%E5%B0%8F%E5%A0%86-title/" title="最小堆">
-                        <span class="hidden-mobile">最小堆</span>
+                      <a href="/2024/03/21/%E6%AF%94%E8%BE%83%E6%93%8D%E4%BD%9C%E7%AC%A6-title/" title="比较操作符">
+                        <span class="hidden-mobile">比较操作符</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
