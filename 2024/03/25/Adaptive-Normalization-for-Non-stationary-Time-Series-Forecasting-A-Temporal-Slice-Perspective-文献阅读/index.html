@@ -16,12 +16,12 @@
   <meta name="author" content="SuperNiuNiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[TOC] 创新点【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。 【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）  【导致】 不适当统计量的 【原因】： 【一方面】  现有的大多数方法忽略了输入">
+    <meta name="description" content="[TOC] 数据来源：https:&#x2F;&#x2F;github.com&#x2F;zhouhaoyi&#x2F;ETDataset https:&#x2F;&#x2F;archive.ics.uci.edu&#x2F;ml&#x2F;datasets&#x2F;ElectricityLoadDiagrams20112014  https:&#x2F;&#x2F;github.com&#x2F;laiguokun&#x2F;multivariate-time-series-data  http:&#x2F;&#x2F;pems.dot.c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting:-A Temporal-Slice-Perspective-文献阅读">
 <meta property="og:url" content="http://example.com/2024/03/25/Adaptive-Normalization-for-Non-stationary-Time-Series-Forecasting-A-Temporal-Slice-Perspective-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="SuperNiuNiu">
-<meta property="og:description" content="[TOC] 创新点【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。 【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）  【导致】 不适当统计量的 【原因】： 【一方面】  现有的大多数方法忽略了输入">
+<meta property="og:description" content="[TOC] 数据来源：https:&#x2F;&#x2F;github.com&#x2F;zhouhaoyi&#x2F;ETDataset https:&#x2F;&#x2F;archive.ics.uci.edu&#x2F;ml&#x2F;datasets&#x2F;ElectricityLoadDiagrams20112014  https:&#x2F;&#x2F;github.com&#x2F;laiguokun&#x2F;multivariate-time-series-data  http:&#x2F;&#x2F;pems.dot.c">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/picture/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240325145939.png">
 <meta property="og:image" content="http://example.com/picture/image-20240326155343938.png">
@@ -38,8 +38,13 @@
 <meta property="og:image" content="http://example.com/picture/image-20240328160712695.png">
 <meta property="og:image" content="http://example.com/picture/image-20240328161013160.png">
 <meta property="og:image" content="http://example.com/picture/image-20240328162148820.png">
+<meta property="og:image" content="http://example.com/2024/03/25/picture/image-20240331180908767.png">
+<meta property="og:image" content="http://example.com/2024/03/25/picture/1bb4a4118783bd23801bc4d2c343c68.png">
+<meta property="og:image" content="http://example.com/2024/03/25/picture/5c7aac95684ff88509fdd7d9179ca4f.png">
+<meta property="og:image" content="http://example.com/picture/image-20240331192350349.png">
+<meta property="og:image" content="http://example.com/picture/a5d2e8d4498d126156053330a554543.png">
 <meta property="article:published_time" content="2024-03-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-28T08:30:32.119Z">
+<meta property="article:modified_time" content="2024-03-31T11:34:01.881Z">
 <meta property="article:author" content="SuperNiuNiu">
 <meta property="article:tag" content="文献阅读">
 <meta property="article:tag" content="非平稳时间序列">
@@ -271,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.8k 字
         
       </span>
     
@@ -282,7 +287,7 @@
         
         
         
-          13 分钟
+          24 分钟
         
       </span>
     
@@ -333,6 +338,14 @@
               <div class="markdown-body">
                 
                 <p>[TOC]</p>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://github.com/zhouhaoyi/ETDataset">https://github.com/zhouhaoyi/ETDataset</a></p>
+<p><a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/ElectricityLoadDiagrams20112014">https://archive.ics.uci.edu/ml/datasets/ElectricityLoadDiagrams20112014</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/laiguokun/multivariate-time-series-data">https://github.com/laiguokun/multivariate-time-series-data</a> </p>
+<p><a target="_blank" rel="noopener" href="http://pems.dot.ca.gov/">http://pems.dot.ca.gov</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.bgc-jena.mpg.de/wetter/">https://www.bgc-jena.mpg.de/wetter/</a> </p>
+<p><a target="_blank" rel="noopener" href="https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html">https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cure-lab/LTSF-Linear">https://github.com/cure-lab/LTSF-Linear</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cure-lab/SCINet">https://github.com/cure-lab/SCINet</a></p>
 <h1 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h1><p>【为克服】 使用不适当的统计量进行归一化  【导致的】 输入序列的每个切片的本能模式被破坏，以及未来统计量的不良估计而导致最终预测结果的预测偏移。</p>
 <p>【提出了】 一个用于非平稳时间序列预测的通用归一化框架- -切片自适应归一化 （Slicing Adaptive Normalization  SAN）</p>
 <hr>
@@ -398,6 +411,37 @@
 </blockquote>
 </blockquote>
 </blockquote>
+<hr>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><p>使用多种数据。</p>
+<img src="../picture/image-20240331180908767.png" srcset="/img/loading.gif" lazyload alt="image-20240331180908767" style="zoom:80%;" />
+
+<p>按照时间顺序将每个数据集分为训练集、验证集和测试集。ETT数据集的分割比为6：2：2，其他数据集的分割比为7：1：2。</p>
+<p>SAN 是一个与模型无关的框架，可应用于任意时间序列预测模型。为了证明该框架的有效性，本文选择了一些基于不同架构的主流模型，并评估了它们在多变量和单变量设置下的性能：基于线性模型的DLinear ，基于Transformer的Autoformer 和FEDformer ，以及基于膨胀卷积的SCINet 。本文呢按照 DLinear9 和 SCINet10 官方代码中提供的实现和设置来实现这些模型。</p>
+<h2 id="实验细节"><a href="#实验细节" class="headerlink" title="实验细节"></a>实验细节</h2><p>使用ADAM 作为所有实验的默认优化器，并报告均方误差（MSE）和平均绝对误差（MAE）作为评估指标。较低的 MSE&#x2F;MAE 表示性能越好。对于SAN中的统计预测模块，为了简单起见，我们使用了一个简单的两层感知器网络，其隐藏大小与骨干模型的嵌入大小相同。</p>
+<h3 id="切片长度"><a href="#切片长度" class="headerlink" title="切片长度"></a>切片长度</h3><p>切片长度的选择采用了启发式的方法，</p>
+<p>即现实世界的时间序列数据在人为定义或实际时间段（每天、每周等）内表现出类似的变化模式。通过梳理基准数据集的频率，本文建立了一个 {6， 12， 24， 48} 的切片长度范围，以便大多数设置涵盖有意义的时间跨度。例如，本文为 ETTh1、电力和交通等数据集选择了 24 的切片长度，频率为 1 小时。这确保了每个时间片在一天内包含数据，并保证了候选人之间的最佳表现。在这里，我们承认我们方法的一个局限性是当前设计无法处理不可分割的长度，因此我们将切片长度设置为 6，这大约代表每周周期，而不是 Exchange 数据集中的 7。</p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>实验最佳结果用粗体表示</p>
+<img src="../picture/1bb4a4118783bd23801bc4d2c343c68.png" srcset="/img/loading.gif" lazyload alt="1bb4a4118783bd23801bc4d2c343c68" style="zoom: 67%;" />
+
+<center style="color:#C0C0C0;text-decoration:underline">多变量设置下的预测误差。.jpg</center>
+
+<img src="../picture/5c7aac95684ff88509fdd7d9179ca4f.png" srcset="/img/loading.gif" lazyload alt="5c7aac95684ff88509fdd7d9179ca4f" style="zoom:67%;" />
+
+<center style="color:#C0C0C0;text-decoration:underline">SAN 与现有规范化方法的比较.jpg</center>
+
+<p>清楚地发现，在基准数据集的大多数情况下，SAN框架可以大大提升这些模型。</p>
+<p>本文将这种改进归因于两个方面。</p>
+<p>【首先】SAN减轻了非平稳因素的影响，正如三个典型的非平稳数据集（Exchange、ILI和ETTh2，由ADF测试结果确定）的性能所证明的那样。</p>
+<p>【其次】 即使在长期预测场景中，预测的难度随着预测时间的延长而显著增加，SAN 也会施加约束。</p>
+<p>将SAN模型与的三种最先进的归一化方法：RevIN 、非平稳变压器 （NST） 和 Dish-TS ，根据相同的实验设置进行比较。将SAN模型归一化的方法和其他归一化方法运用到Autoformer和FEDformer模型上，对每个数据集的所有预测长度上的平均MSE评估以及相对改进。</p>
+<p>【结论】 SAN在现有的归一化方法中实现了最佳性能。比较表明，SAN在从时间切片的角度去除非平稳因素方面可能更有效，而不是考虑整个实例。此外，提出的两阶段训练模式至关重要，因为它使 SAN 的性能大大优于 Dish-TS，而 Dish-TS 忽略了双级优化的性质。然而，SAN的这种特殊能力可能会导致过度平稳化问题[25]，导致天气数据集的性能下降。</p>
+<h2 id="预测结果"><a href="#预测结果" class="headerlink" title="预测结果"></a>预测结果</h2><p>下图显示了使用 FEDformer 作为主干的 ETTm2 数据集上的示例预测，并具有 SAN、RevIN、NST 或 Dish-TS 增强功能。<img src="/../picture/image-20240331192350349.png" srcset="/img/loading.gif" lazyload alt="image-20240331192350349"></p>
+<p>输入长度为 96，预测长度设置为 336。很明显，SAN 可以生成更现实的预测。</p>
+<p>本文猜测 RevIN 和 NST 的质量差是由它们粗略的非规范化方式引起的。尽管输入序列的平均值可以被视为未来数据的最大似然估计，但与输入相比，非平稳数据集的分布可能会发生重大变化。</p>
+<p>因此，简单地使用输入序列统计量对主干模型的输出进行非规范化处理可能会导致不匹配，就像在 RevIN 和 NST 预测中看到的那样，这两个量表相似。</p>
+<p>至于Dish-TS，该方法虽然试图学习未来分布，但它忽略了双层优化的性质，其纠缠的学习模式限制了统计的估计精度，最终导致性能不佳。</p>
+<p>【相反】SAN从切片的角度对时间序列的动态性质进行建模，并引入了一个独立的统计预测模块，以学习通过两阶段训练模式来预测未来非规范化的分布。通过这种方式，我们根据统计预测自适应地调整预测结果的规模和偏差，捕捉未来数据的趋势。因此，尽管输入的平均值相当低，但 SAN 仍会产生与实际情况一致的更高预测。</p>
+<h1 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h1><p><img src="/../picture/a5d2e8d4498d126156053330a554543.png" srcset="/img/loading.gif" lazyload alt="a5d2e8d4498d126156053330a554543"></p>
 
                 
               </div>
