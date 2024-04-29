@@ -16,29 +16,24 @@
   <meta name="author" content="SuperNiuNiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[TOC] 借鉴：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huansky&#x2F;p&#x2F;13488234.html ​           https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;substring-with-concatenation-of-all-words&#x2F;solutions&#x2F;1362316&#x2F;by-dodo_1202-cqbe&#x2F; 滑动窗口滑动窗口是在给定大小的数组和字符串上进">
+    <meta name="description" content="31. 下一个排列 - 力扣（LeetCode） 找出这个数组排序出的所有数中，刚好比当前数大的那个数 比如当前 nums &#x3D; [1,2,3]。这个数是123，找出1，2，3这3个数字排序可能的所有数，排序后，比123大的那个数 也就是132 如果当前 nums &#x3D; [3,2,1]。这就是1，2，3所有排序中最大的那个数，那么就返回1，2，3排序后所有数中最小的那个，也就是1，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="滑动窗口">
-<meta property="og:url" content="http://example.com/2024/03/31/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/index.html">
+<meta property="og:title" content="下一个排列算法">
+<meta property="og:url" content="http://example.com/2024/04/01/%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="SuperNiuNiu">
-<meta property="og:description" content="[TOC] 借鉴：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huansky&#x2F;p&#x2F;13488234.html ​           https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;substring-with-concatenation-of-all-words&#x2F;solutions&#x2F;1362316&#x2F;by-dodo_1202-cqbe&#x2F; 滑动窗口滑动窗口是在给定大小的数组和字符串上进">
+<meta property="og:description" content="31. 下一个排列 - 力扣（LeetCode） 找出这个数组排序出的所有数中，刚好比当前数大的那个数 比如当前 nums &#x3D; [1,2,3]。这个数是123，找出1，2，3这3个数字排序可能的所有数，排序后，比123大的那个数 也就是132 如果当前 nums &#x3D; [3,2,1]。这就是1，2，3所有排序中最大的那个数，那么就返回1，2，3排序后所有数中最小的那个，也就是1，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/2019101621574345.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215752186.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215807735.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215824468.png">
-<meta property="article:published_time" content="2024-03-31T02:25:51.000Z">
-<meta property="article:modified_time" content="2024-03-31T08:04:02.866Z">
+<meta property="article:published_time" content="2024-04-01T08:19:15.000Z">
+<meta property="article:modified_time" content="2024-04-01T08:42:02.429Z">
 <meta property="article:author" content="SuperNiuNiu">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/03/31/picture/2019101621574345.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>滑动窗口 - SuperNiuNiu</title>
+  <title>下一个排列算法 - SuperNiuNiu</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="滑动窗口"></span>
+            <span id="subtitle" data-typed-text="下一个排列算法"></span>
           
         </div>
 
@@ -247,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-31 10:25" pubdate>
-          2024年3月31日 上午
+        <time datetime="2024-04-01 16:19" pubdate>
+          2024年4月1日 下午
         </time>
       </span>
     
@@ -259,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          397 字
         
       </span>
     
@@ -270,7 +265,7 @@
         
         
         
-          9 分钟
+          4 分钟
         
       </span>
     
@@ -315,49 +310,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">滑动窗口</h1>
+            <h1 id="seo-header">下一个排列算法</h1>
             
             
               <div class="markdown-body">
                 
-                <p>[TOC]</p>
-<p>借鉴：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/huansky/p/13488234.html">https://www.cnblogs.com/huansky/p/13488234.html</a></p>
-<p>​           <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/solutions/1362316/by-dodo_1202-cqbe/">https://leetcode.cn/problems/substring-with-concatenation-of-all-words/solutions/1362316/by-dodo_1202-cqbe/</a></p>
-<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><p>滑动窗口是在给定大小的数组和字符串上进行平滑操作，找到指定内容的方法。由于需要两指针，因此通常需要一些辅助方法，如哈希表（即python中的dict,用于标记元素位置），或集合（即python中的set(),创建一个无序不重复元素集），优先队列，红黑树，单调队列，大小堆等等，应根据各种数据结构的特点来选取。</p>
-<h3 id="思考（也是考点）："><a href="#思考（也是考点）：" class="headerlink" title="思考（也是考点）："></a>思考（也是考点）：</h3><p>1、窗口使用什么数据结构<br>2、达到窗口限定后，左边届该怎样收缩，如果无法以常规方法收缩，考虑延时删除策略（在采集答案前进行）<br>3、怎样采集答案<br>4、滑窗的步长<br>5、滑窗的起始位置<br>6、是否需要数据预处理，例如排序，才能使用滑窗</p>
-<h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><blockquote>
-<p>1、对字符串 S（或数组） 使用双指针中的左右指针技巧，初始化left &#x3D; right &#x3D; 0。 索引闭区间[ left,right]称为一个窗口。</p>
-<p>2、不断地增加 right 指针扩大窗口 [left, right]，直到窗口中的字符串符合要求（包含了 T 中的所有字符）</p>
-<p>3、停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
-<p>4、重复第2 步和第三步，直到right到达字符串S的尽头</p>
+                <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-permutation/description/">31. 下一个排列 - 力扣（LeetCode）</a></p>
+<p>找出这个数组排序出的所有数中，刚好比当前数大的那个数</p>
+<p>比如当前 nums &#x3D; [1,2,3]。这个数是123，找出1，2，3这3个数字排序可能的所有数，排序后，比123大的那个数 也就是132</p>
+<p>如果当前 nums &#x3D; [3,2,1]。这就是1，2，3所有排序中最大的那个数，那么就返回1，2，3排序后所有数中最小的那个，也就是1，2，3 -&gt; [1,2,3]</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>1、 我们希望下一个数组组成的数比现在的数大，因此只需要从后向前，将后面稍大的数和前面稍小的数交换。例 1234587，因此只需要将5，7进行交换 得出更大的数 1234785</p>
+<blockquote>
+<p>从后向前，查找到第一个i，满足数组a[i] &lt; a[i+1]</p>
+<p>再从[i+1,n)中从后向前找到 第一个元素 j 满足 a[i] &lt; a[j] ,这样较大数 为a[j]  </p>
 </blockquote>
-<p>第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动。</p>
-<p>下面画图理解一下，needs 和 window 相当于计数器，分别记录 T 中字符出现次数和窗口中的相应字符的出现次数。</p>
-<p>初始状态：</p>
-<img src="../picture/2019101621574345.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
+<p>2、还希望下一个数在其他比原数组成的数中最小。</p>
+<blockquote>
+<p>交换 a[i],a[j],此时可以发现[i+1,n) 必为降序， 因此可以用双指针反转区间，使里面数值便为升序.</p>
+<p>这时 该数组为稍大的数</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">nextPermutation</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-literal">None</span>:<br>        i = <span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">2</span><br>        <span class="hljs-keyword">while</span> i &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] &gt;= nums[i + <span class="hljs-number">1</span>]:<br>            i -= <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> i &gt;= <span class="hljs-number">0</span>:<br>            j = <span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">1</span><br>            <span class="hljs-keyword">while</span> j &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> nums[i] &gt;= nums[j]:<br>                j -= <span class="hljs-number">1</span><br>            nums[i], nums[j] = nums[j], nums[i]<br>        <br>        left, right = i + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">1</span><br>        <span class="hljs-keyword">while</span> left &lt; right:<br>            nums[left], nums[right] = nums[right], nums[left]<br>            left += <span class="hljs-number">1</span><br>            right -= <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 
-<p>增加 right，直到窗口 [left, right] 包含了 T 中所有字符：</p>
-<img src="../picture/20191016215752186.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>现在开始增加 left，缩小窗口 [left, right]。</p>
-<img src="../picture/20191016215807735.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>直到窗口中的字符串不再符合要求，left 不再继续移动。</p>
-<img src="../picture/20191016215824468.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>之后重复上述过程，先移动 right，再移动 left…… 直到 right 指针到达字符串 S 的末端，算法结束。</p>
-<h3 id="寻找最长"><a href="#寻找最长" class="headerlink" title="寻找最长"></a>寻找最长</h3><p>【如果】窗内满足条件， R 向右扩大窗口,并更新最优结果</p>
-<p>【如果】不满足条件， L向右缩小窗口</p>
-<h3 id="寻找最短"><a href="#寻找最短" class="headerlink" title="寻找最短"></a>寻找最短</h3><p>【如果】窗内满足条件， L 向右缩小窗口,并更新最优结果</p>
-<p>【如果】不满足条件， R向右扩大窗口</p>
-<p>例题：[30. 串联所有单词的子串 - 力扣（LeetCode）](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/">https://leetcode.cn/problems/substring-with-concatenation-of-all-words/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> collection<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Sliding</span> Window(s,t): <span class="hljs-comment"># t即题目中的words</span><br>    n = <span class="hljs-built_in">len</span>(s)<br>    stride = <span class="hljs-built_in">len</span>(t[<span class="hljs-number">0</span>]) <span class="hljs-comment">#定义步长</span><br>    limit = <span class="hljs-built_in">len</span>(words) * stride<br>    <br><br>    <span class="hljs-comment">#它的其他功能与dict相同，但会为一个不存在的键提供默认值，从而避免KeyError异常。    </span><br>    needs = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    ans = []<br>    <br>    <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> t:<br>        need[w] += <span class="hljs-number">1</span> <br>    <span class="hljs-keyword">for</span> strat <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,stride):<br>        left = right = strat <span class="hljs-comment">#指向当前步子的第一个下标</span><br>        cnt = <span class="hljs-number">0</span> <span class="hljs-comment">#记录窗口内满足要求得单词数</span><br>        window = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>		<span class="hljs-keyword">while</span> right &lt; n:<br>            <span class="hljs-comment">#右边界入窗</span><br>            cur_right = s[right:right+stride]<br>            <span class="hljs-keyword">if</span> cur_right <span class="hljs-keyword">in</span> need:<br>                window[cur_right] += <span class="hljs-number">1</span><br>               <span class="hljs-keyword">if</span> window[cur_right] == need[cur_right]:<br>                	cnt += <span class="hljs-number">1</span><br>            <span class="hljs-comment"># 左边界收缩</span><br>            <span class="hljs-keyword">if</span> right - left + stride &gt; limit:<br>                cur_left = s[left:left+stride]<br>                <span class="hljs-keyword">if</span> cur_right <span class="hljs-keyword">in</span> need:<br>                    <span class="hljs-keyword">if</span> window[cur_left] == need[cur_left]:<br>                        cnt -= <span class="hljs-number">1</span><br>                    window[cur_left] -= <span class="hljs-number">1</span><br>                    left += stride<br>            <span class="hljs-comment">#采集答案</span><br>            <span class="hljs-keyword">if</span> right - left +stride == limit <span class="hljs-keyword">and</span> cnt == <span class="hljs-built_in">len</span>(need):<br>                ans.append(left)<br>            right += stride<br>	<span class="hljs-keyword">return</span> ans<br>            <br>                           <br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>本模板左右平移步长为1 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> collection<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Sliding</span> Window(s,t):<br>    left = right = <span class="hljs-number">0</span><br>    valid = <span class="hljs-number">0</span> <span class="hljs-comment"># 窗口内已凑齐的字符种类数量</span><br>    window = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    needs = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> t:<br>        needs[w] += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> right &lt; <span class="hljs-built_in">len</span>(s):<br>       	<span class="hljs-comment">#右边界入窗，对窗口内数据的一系列更新</span><br>        window[s[right]] += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> window[s[right]] == need [s[right]]:<br>            valid += <span class="hljs-number">1</span><br>        <span class="hljs-comment"># 注意，先判断再加</span><br>        <br>        <span class="hljs-comment">#判断左侧是否要收缩</span><br>        <span class="hljs-keyword">while</span> 需要收缩:<br>            <span class="hljs-comment">#左边界移除窗口，进行窗口内数据更新</span><br>            <span class="hljs-keyword">if</span> window[s[left]] == need[s[left]]:<br>                valid -= <span class="hljs-number">1</span><br>                <span class="hljs-comment">#先判断再减</span><br>            window[s[left]] -= <span class="hljs-number">1</span><br>            left += <span class="hljs-number">1</span> <span class="hljs-comment"># 注意左侧进行收缩</span><br>        <br>        采集答案<br>        right += <span class="hljs-number">1</span><br>        <br>        <br></code></pre></td></tr></table></figure>
-
+<p>借鉴：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-permutation/solutions/479151/xia-yi-ge-pai-lie-by-leetcode-solution/">31. 下一个排列 - 力扣（LeetCode）</a></p>
 
                 
               </div>
@@ -382,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>滑动窗口</div>
-      <div>http://example.com/2024/03/31/滑动窗口/</div>
+      <div>下一个排列算法</div>
+      <div>http://example.com/2024/04/01/下一个排列算法/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月31日</div>
+          <div>2024年4月1日</div>
         </div>
       
       
@@ -427,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/01/FEDformer-Frequency-Enhanced-Decomposed-Transformer-for-Long-term-Series-Forecasting-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" title="FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读">
+                      <a href="/2024/04/09/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分查找">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读</span>
+                        <span class="hidden-mobile">二分查找</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/25/%E5%93%88%E5%B8%8C%E8%A1%A8/" title="哈希表">
-                        <span class="hidden-mobile">哈希表</span>
+                      <a href="/2024/04/01/FEDformer-Frequency-Enhanced-Decomposed-Transformer-for-Long-term-Series-Forecasting-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" title="FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读">
+                        <span class="hidden-mobile">FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

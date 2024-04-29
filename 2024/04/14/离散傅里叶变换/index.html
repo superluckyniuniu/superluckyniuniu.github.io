@@ -16,29 +16,30 @@
   <meta name="author" content="SuperNiuNiu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[TOC] 借鉴：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huansky&#x2F;p&#x2F;13488234.html ​           https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;substring-with-concatenation-of-all-words&#x2F;solutions&#x2F;1362316&#x2F;by-dodo_1202-cqbe&#x2F; 滑动窗口滑动窗口是在给定大小的数组和字符串上进">
+    <meta name="description" content="离散傅里叶变换的作用将时间域信号分解为构成它的频率成分，以此获得频率信息（振幅谱、功率谱和功率谱密度）可以获得我们无法从时间域获得的对信号的一些洞察。 离散傅里叶变换（DFT）便是帮助我们获得这些表示的第一步。 DFT将信号（时间域）或距离（空间域）转换到频率域。  可以通过转换找到原本域内不明显的信号特征  离散傅里叶变换的公式$$X_k &#x3D; \sum_{n&#x3D;0}^{N-1}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="滑动窗口">
-<meta property="og:url" content="http://example.com/2024/03/31/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/index.html">
+<meta property="og:title" content="离散傅里叶变换">
+<meta property="og:url" content="http://example.com/2024/04/14/%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="SuperNiuNiu">
-<meta property="og:description" content="[TOC] 借鉴：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;huansky&#x2F;p&#x2F;13488234.html ​           https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;substring-with-concatenation-of-all-words&#x2F;solutions&#x2F;1362316&#x2F;by-dodo_1202-cqbe&#x2F; 滑动窗口滑动窗口是在给定大小的数组和字符串上进">
+<meta property="og:description" content="离散傅里叶变换的作用将时间域信号分解为构成它的频率成分，以此获得频率信息（振幅谱、功率谱和功率谱密度）可以获得我们无法从时间域获得的对信号的一些洞察。 离散傅里叶变换（DFT）便是帮助我们获得这些表示的第一步。 DFT将信号（时间域）或距离（空间域）转换到频率域。  可以通过转换找到原本域内不明显的信号特征  离散傅里叶变换的公式$$X_k &#x3D; \sum_{n&#x3D;0}^{N-1}">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/2019101621574345.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215752186.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215807735.png">
-<meta property="og:image" content="http://example.com/2024/03/31/picture/20191016215824468.png">
-<meta property="article:published_time" content="2024-03-31T02:25:51.000Z">
-<meta property="article:modified_time" content="2024-03-31T08:04:02.866Z">
+<meta property="og:image" content="http://example.com/picture/image-20240415165513671.png">
+<meta property="og:image" content="http://example.com/picture/v2-9f362e80d8a3ede0e575fc3ea2b05fb2_720w.webp">
+<meta property="og:image" content="http://example.com/picture/image-20240414164437538.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414165107652.png">
+<meta property="og:image" content="http://example.com/picture/image-20240416163521215.png">
+<meta property="article:published_time" content="2024-04-14T07:51:22.000Z">
+<meta property="article:modified_time" content="2024-04-22T08:33:33.383Z">
 <meta property="article:author" content="SuperNiuNiu">
-<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="理论基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/03/31/picture/2019101621574345.png">
+<meta name="twitter:image" content="http://example.com/picture/image-20240415165513671.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>滑动窗口 - SuperNiuNiu</title>
+  <title>离散傅里叶变换 - SuperNiuNiu</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="滑动窗口"></span>
+            <span id="subtitle" data-typed-text="离散傅里叶变换"></span>
           
         </div>
 
@@ -247,8 +248,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-31 10:25" pubdate>
-          2024年3月31日 上午
+        <time datetime="2024-04-14 15:51" pubdate>
+          2024年4月14日 下午
         </time>
       </span>
     
@@ -259,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          2.3k 字
         
       </span>
     
@@ -270,7 +271,7 @@
         
         
         
-          9 分钟
+          20 分钟
         
       </span>
     
@@ -315,49 +316,111 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">滑动窗口</h1>
+            <h1 id="seo-header">离散傅里叶变换</h1>
             
             
               <div class="markdown-body">
                 
-                <p>[TOC]</p>
-<p>借鉴：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/huansky/p/13488234.html">https://www.cnblogs.com/huansky/p/13488234.html</a></p>
-<p>​           <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/solutions/1362316/by-dodo_1202-cqbe/">https://leetcode.cn/problems/substring-with-concatenation-of-all-words/solutions/1362316/by-dodo_1202-cqbe/</a></p>
-<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><p>滑动窗口是在给定大小的数组和字符串上进行平滑操作，找到指定内容的方法。由于需要两指针，因此通常需要一些辅助方法，如哈希表（即python中的dict,用于标记元素位置），或集合（即python中的set(),创建一个无序不重复元素集），优先队列，红黑树，单调队列，大小堆等等，应根据各种数据结构的特点来选取。</p>
-<h3 id="思考（也是考点）："><a href="#思考（也是考点）：" class="headerlink" title="思考（也是考点）："></a>思考（也是考点）：</h3><p>1、窗口使用什么数据结构<br>2、达到窗口限定后，左边届该怎样收缩，如果无法以常规方法收缩，考虑延时删除策略（在采集答案前进行）<br>3、怎样采集答案<br>4、滑窗的步长<br>5、滑窗的起始位置<br>6、是否需要数据预处理，例如排序，才能使用滑窗</p>
-<h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><blockquote>
-<p>1、对字符串 S（或数组） 使用双指针中的左右指针技巧，初始化left &#x3D; right &#x3D; 0。 索引闭区间[ left,right]称为一个窗口。</p>
-<p>2、不断地增加 right 指针扩大窗口 [left, right]，直到窗口中的字符串符合要求（包含了 T 中的所有字符）</p>
-<p>3、停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
-<p>4、重复第2 步和第三步，直到right到达字符串S的尽头</p>
+                <h1 id="离散傅里叶变换的作用"><a href="#离散傅里叶变换的作用" class="headerlink" title="离散傅里叶变换的作用"></a>离散傅里叶变换的作用</h1><p>将时间域信号分解为构成它的频率成分，以此获得频率信息（振幅谱、功率谱和功率谱密度）可以获得我们无法从时间域获得的对信号的一些洞察。</p>
+<p>离散傅里叶变换（DFT）便是帮助我们获得这些表示的第一步。</p>
+<p>DFT将信号（时间域）或距离（空间域）转换到频率域。</p>
+<blockquote>
+<p>可以通过转换找到原本域内不明显的信号特征</p>
 </blockquote>
-<p>第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动。</p>
-<p>下面画图理解一下，needs 和 window 相当于计数器，分别记录 T 中字符出现次数和窗口中的相应字符的出现次数。</p>
-<p>初始状态：</p>
-<img src="../picture/2019101621574345.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
+<h1 id="离散傅里叶变换的公式"><a href="#离散傅里叶变换的公式" class="headerlink" title="离散傅里叶变换的公式"></a>离散傅里叶变换的公式</h1><p>$$<br>X_k &#x3D; \sum_{n&#x3D;0}^{N-1}{x_n}e^{-i\frac{2\pi}{N}kn}<br>$$</p>
+<p>x<del>n</del> 为离散时间域信号  ✖ 复数为e的指数<br>$$<br>e^{-i\frac{2\pi}{N}kn} \<br>e^{-in}  &#x3D; cos(n)+isin(n)<br>$$<br>即可看作将时间信号✖特定频率的正弦和余弦 ，由变量k给出，再将结果求和。</p>
+<p>可对不同的频率和不同的k值进行求和。</p>
+<p>离散傅里叶变换仍旧是时域到频域的变换。由于求和形式的特殊性，可以有其他的解释方法。</p>
+<p>如果把序列x<del>n</del>看作多项式f(x)的x^n^项系数，则计算得到的X<del>K</del> 恰好是多项式 f (x)代入单位根$e^{-i\frac{2\pi}{N}k} \$的点值$f(e^{-i\frac{2\pi}{N}k}\$） 。</p>
+<p>这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的插值操作。离散傅里叶变换恰好是多项式在单位根处进行插值。</p>
+<p>例如计算：</p>
+<p>${n\choose 3} + {n\choose 7} +{n\choose 11}+{n\choose 15}+…… $</p>
+<p>定义函数f(x)为：</p>
+<p>$$f(x) &#x3D; (1+x)^n &#x3D; {n\choose 0}x^0 + {n\choose 1}x^1 +{n\choose 2}x^2+{n\choose 3}x^3+…… $$</p>
+<p>然后可以发现，代入四次单位根 f(i)得到这样的序列：</p>
+<p>$f(i) &#x3D; (1+i)^n&#x3D;{n\choose 0} + {n\choose 1}i -{n\choose 2}x^2-{n\choose 3}i+……$</p>
+<p>于是下面的求和恰好可以把其余各项消掉：</p>
+<p>$f(1) + if(i) - f(-1) -if(-1) &#x3D; 4{n\choose 3} + 4{n\choose 7} +4{n\choose 11}+4{n\choose 15}+…… $</p>
+<p>因此这道数学题的答案为：</p>
+<p>${n\choose 3} + {n\choose 7} +{n\choose 11}+{n\choose 15}+…… &#x3D; \frac{2^n+i(1+i)^n-i(1-i)^n}4 $</p>
+<p>这道数学题在单位根处插值，恰好构成离散傅里叶变换。</p>
+<blockquote>
+<p><img src="/../picture/image-20240415165513671.png" srcset="/img/loading.gif" lazyload alt="image-20240415165513671"></p>
+<p>复平面中的<strong>单位圆</strong><img src="/../picture/v2-9f362e80d8a3ede0e575fc3ea2b05fb2_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其中向量OA单位根，表示为 $e^i\theta$，可知 $e^i\theta &#x3D; cos\theta+isin\theta$</p>
+<p>将单位圆等分成 n个部分（以单位圆与实轴正半轴的交点一个等分点），以原点为起点，圆的这 n 个 n等分点为终点，作出 n个向量。</p>
+<p>其中<strong>幅角为正且最小</strong>的向量称为 n次单位向量，记为$\omega_n^1 $。</p>
+<p>其余的 n−1 个向量分别为$\omega_n^2,\omega_n^3,……，\omega_n^n$ ，它们可以由复数之间的乘法得来$\omega_n^k&#x3D;\omega_n^k-*\omega_n^1$ </p>
+<p>易得 $\omega_n^n&#x3D;\omega_n^0&#x3D;1$</p>
+</blockquote>
+<p><strong>可把DFT看作时间信号和许多频率之间产生相关性</strong></p>
+<p><img src="/../picture/image-20240414164437538.png" srcset="/img/loading.gif" lazyload alt="image-20240414164437538"></p>
+<p><strong>还可以看作矩阵乘法的旋转</strong></p>
+<p><img src="/../picture/image-20240414165107652.png" srcset="/img/loading.gif" lazyload alt="image-20240414165107652"></p>
+<p> X<del>0</del> 为时间信号与k&#x3D;0 的内积以此类推</p>
+<h1 id="快速傅里叶变换（Fast-Fourier-Transform-FFT）"><a href="#快速傅里叶变换（Fast-Fourier-Transform-FFT）" class="headerlink" title="快速傅里叶变换（Fast Fourier Transform, FFT）"></a>快速傅里叶变换（Fast Fourier Transform, FFT）</h1><p><strong>快速傅里叶变换</strong> (Fast Fourier Transform, FFT) 是一种可在O(nlogn)时间内完成的 离散傅里叶变换(Discrete Fourier transform, DFT) 算法.</p>
+<p>傅里叶变换 (Fourier Transform) 本质上是信号与三角函数进行卷积运算，而快速傅里叶变换 (FFT) 就是提高卷积的计算效率，时间复杂度从 O(n^2^) 降低到 O(nlogn)</p>
+<p><strong>FFT</strong> 在算法中主要是用来在算法中的运用主要是用来加速<strong>多项式乘法</strong>或<strong>大数乘法</strong></p>
+<h2 id="多项式乘法"><a href="#多项式乘法" class="headerlink" title="多项式乘法"></a>多项式乘法</h2><p>考虑两个多项式 **A(x)<strong>，</strong>B(x) **，其乘积 **C(x) &#x3D; A(x) * B(x) **</p>
+<p>假设 <strong>A(x)</strong> 的项数为 n，其系数构成的 n维向量为 (a<del>0</del>,a<del>1</del>,a<del>2</del>,⋯,a<del>n−1</del>) ； B(x) 的项数为 m ，其系数构成的 m维向量为 (b<del>0</del>,b<del>1</del>,b<del>2</del>,⋯,b<del>n−1</del>)。</p>
+<p>我们要求<strong>C(x)</strong> 的系数构成的n+m-1维的向量，先考虑暴力做法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-built_in">len</span>(A)<br>m = <span class="hljs-built_in">len</span>(B)<br>C = [<span class="hljs-number">0</span>]*(m+n-<span class="hljs-number">1</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>        C[i+j] = A[i] * B[j]<br>      <br></code></pre></td></tr></table></figure>
 
-<p>增加 right，直到窗口 [left, right] 包含了 T 中所有字符：</p>
-<img src="../picture/20191016215752186.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>现在开始增加 left，缩小窗口 [left, right]。</p>
-<img src="../picture/20191016215807735.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>直到窗口中的字符串不再符合要求，left 不再继续移动。</p>
-<img src="../picture/20191016215824468.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom:50%;" />
-
-<p>之后重复上述过程，先移动 right，再移动 left…… 直到 right 指针到达字符串 S 的末端，算法结束。</p>
-<h3 id="寻找最长"><a href="#寻找最长" class="headerlink" title="寻找最长"></a>寻找最长</h3><p>【如果】窗内满足条件， R 向右扩大窗口,并更新最优结果</p>
-<p>【如果】不满足条件， L向右缩小窗口</p>
-<h3 id="寻找最短"><a href="#寻找最短" class="headerlink" title="寻找最短"></a>寻找最短</h3><p>【如果】窗内满足条件， L 向右缩小窗口,并更新最优结果</p>
-<p>【如果】不满足条件， R向右扩大窗口</p>
-<p>例题：[30. 串联所有单词的子串 - 力扣（LeetCode）](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/">https://leetcode.cn/problems/substring-with-concatenation-of-all-words/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> collection<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Sliding</span> Window(s,t): <span class="hljs-comment"># t即题目中的words</span><br>    n = <span class="hljs-built_in">len</span>(s)<br>    stride = <span class="hljs-built_in">len</span>(t[<span class="hljs-number">0</span>]) <span class="hljs-comment">#定义步长</span><br>    limit = <span class="hljs-built_in">len</span>(words) * stride<br>    <br><br>    <span class="hljs-comment">#它的其他功能与dict相同，但会为一个不存在的键提供默认值，从而避免KeyError异常。    </span><br>    needs = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    ans = []<br>    <br>    <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> t:<br>        need[w] += <span class="hljs-number">1</span> <br>    <span class="hljs-keyword">for</span> strat <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>,stride):<br>        left = right = strat <span class="hljs-comment">#指向当前步子的第一个下标</span><br>        cnt = <span class="hljs-number">0</span> <span class="hljs-comment">#记录窗口内满足要求得单词数</span><br>        window = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>		<span class="hljs-keyword">while</span> right &lt; n:<br>            <span class="hljs-comment">#右边界入窗</span><br>            cur_right = s[right:right+stride]<br>            <span class="hljs-keyword">if</span> cur_right <span class="hljs-keyword">in</span> need:<br>                window[cur_right] += <span class="hljs-number">1</span><br>               <span class="hljs-keyword">if</span> window[cur_right] == need[cur_right]:<br>                	cnt += <span class="hljs-number">1</span><br>            <span class="hljs-comment"># 左边界收缩</span><br>            <span class="hljs-keyword">if</span> right - left + stride &gt; limit:<br>                cur_left = s[left:left+stride]<br>                <span class="hljs-keyword">if</span> cur_right <span class="hljs-keyword">in</span> need:<br>                    <span class="hljs-keyword">if</span> window[cur_left] == need[cur_left]:<br>                        cnt -= <span class="hljs-number">1</span><br>                    window[cur_left] -= <span class="hljs-number">1</span><br>                    left += stride<br>            <span class="hljs-comment">#采集答案</span><br>            <span class="hljs-keyword">if</span> right - left +stride == limit <span class="hljs-keyword">and</span> cnt == <span class="hljs-built_in">len</span>(need):<br>                ans.append(left)<br>            right += stride<br>	<span class="hljs-keyword">return</span> ans<br>            <br>                           <br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>本模板左右平移步长为1 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> collection<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Sliding</span> Window(s,t):<br>    left = right = <span class="hljs-number">0</span><br>    valid = <span class="hljs-number">0</span> <span class="hljs-comment"># 窗口内已凑齐的字符种类数量</span><br>    window = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    needs = collections.defaultdict(<span class="hljs-built_in">int</span>)<br>    <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> t:<br>        needs[w] += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> right &lt; <span class="hljs-built_in">len</span>(s):<br>       	<span class="hljs-comment">#右边界入窗，对窗口内数据的一系列更新</span><br>        window[s[right]] += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> window[s[right]] == need [s[right]]:<br>            valid += <span class="hljs-number">1</span><br>        <span class="hljs-comment"># 注意，先判断再加</span><br>        <br>        <span class="hljs-comment">#判断左侧是否要收缩</span><br>        <span class="hljs-keyword">while</span> 需要收缩:<br>            <span class="hljs-comment">#左边界移除窗口，进行窗口内数据更新</span><br>            <span class="hljs-keyword">if</span> window[s[left]] == need[s[left]]:<br>                valid -= <span class="hljs-number">1</span><br>                <span class="hljs-comment">#先判断再减</span><br>            window[s[left]] -= <span class="hljs-number">1</span><br>            left += <span class="hljs-number">1</span> <span class="hljs-comment"># 注意左侧进行收缩</span><br>        <br>        采集答案<br>        right += <span class="hljs-number">1</span><br>        <br>        <br></code></pre></td></tr></table></figure>
-
+<p>可见时间复杂度是 O(n^2^) 。</p>
+<p>实际运用中多项式的项数非常多，比如 10^5^ 这种级别，那么有没有什么方法可以加速运算呢？</p>
+<p>已知在一组插值节点 (x^0^,x^1^,x^2^,⋯,x^n^)中 ，假设<strong>A(x)<strong>，</strong>B(x)</strong> 为多项式的项数相同。 **A(x)<strong>，</strong>B(x)**的点值向量分别为(y<del>a0</del>,y<del>a1</del>,y<del>a2</del>,⋯,y<del>an</del>) ，(y<del>b0</del>,y<del>b1</del>,y<del>b2</del>,⋯,y<del>bn</del>) ,则：</p>
+<p>$A(x) &#x3D; (x_0,y_{a0}),(x_1,y_{a1}),(x_2,y_{a2})，……，(x_n,y_{an})$</p>
+<p>$B(x) &#x3D;  (x_0,y_{b0}),(x_1,y_{b1}),(x_2,y_{b2})，……，(x_n,y_{bn})$</p>
+<p>$ C(x) &#x3D;(x_0,y_{a0}·y_{b0}),(x_1,y_{a1}·y_{b1}),(x_2,y_{a2}·y_{b2})，……，(x_n,y_{an}·y_{bn}) $</p>
+<p>那么 <strong>C(x) &#x3D; A(x) ⋅ B(x) <strong>，那么其</strong>点值表示法</strong>可以在 O(n) 的时间内求出</p>
+<blockquote>
+<h1 id="点值表示法"><a href="#点值表示法" class="headerlink" title="点值表示法"></a>点值表示法</h1><p>点值表示法是把这个多项式看成一个函数，从其中选取 n 个不同的点，从而利用这 n 个点来唯一地表示这个函数</p>
+<p>设</p>
+<p>$A(x_0) &#x3D; y_0 &#x3D; a_0 +a_1x_0+a_2x_0^2+a_3x_0^3+……+a_{n-1}x_0^{n-1}$</p>
+<p>$A(x_1) &#x3D; y_1 &#x3D; a_0 +a_1x_1+a_2x_1^2+a_3x_1^3+……+a_{n-1}x_1^{n-1}$</p>
+<p>$A(x_2) &#x3D; y_2 &#x3D; a_0 +a_1x_2+a_2x_2^2+a_3x_2^3+……+a_{n-1}x_2^{n-1}$</p>
+<p>………………</p>
+<p>$A(x_n) &#x3D; y_n &#x3D; a_0 +a_1x_n+a_2x_n^2+a_3x_n^3+……+a_{n-1}x_n^{n-1}$</p>
+<p>那么用点值表示法表示 A(x) 如下：</p>
+<p>$ A(x)&#x3D; a_0 +a_1x+a_2x^2+a_3x^3+……+a_{n-1}x^{n-1}  ⇔ A(x)&#x3D;(x_0,y_{0}),(x_1,y_{1}),(x_2,y_{2})，……，(x_n,y_{n})$</p>
+</blockquote>
+<p>可以观察到，多项式乘法的系数表示法就是做<strong>卷积运算</strong>，而点值表示法是做<strong>乘法运算</strong>。卷积定理告诉我们在一个域中的卷积相当于另一个域中的乘积。</p>
+<p>在这里，系数表示法就是时域上表达，很复杂，而点值表示法就是频域上表示，就非常简单。那么我们将其转换为频域上表示，就可以大大降低其复杂度！</p>
+<p>此时我们可以把快速傅里叶变换（FFT）看作是一个黑匣子，我们先向黑匣子输入<strong>A(x) ，B(x) ** 系数表达式，黑匣子内部先将</strong>A(x) ,B(x) ** 都变成点值表达式，黑匣子进行乘法运算后，再在内部转换为系数表达式.</p>
+<h2 id="FFT算法"><a href="#FFT算法" class="headerlink" title="FFT算法"></a>FFT算法</h2><p>FFT算法的基本思想是分治法，将多项式分为奇次项和偶次项处理</p>
+<p>$ A(x)&#x3D; a_0 +a_1x+a_2x^2+a_3x^3+……+a_{n-1}x^{n-1} $</p>
+<p>按照次数的奇偶来分成两组，然后提出一个x:</p>
+<p>$A(x) &#x3D;  (a_0 +a_2x^2+a_4x^4+a_6x^6……）+x(a_1 +a_3x^2+a_5x^4+a_7x^6)$</p>
+<p>令</p>
+<p>$H(x) &#x3D; a_0 +a_2x+a_4x^2+a_6x^3+……+a_{n-2}x^{\frac{n-2}2}$</p>
+<p>$G(x) &#x3D; a_1 +a_3x+a_5x^2+a_6x^3+……+a_{n-1}x^{\frac{n-2}2}$</p>
+<p>$A(x) &#x3D; H(x^2)+xG(x^2)$</p>
+<p>因为单位根$\omega_{2n}^{k+n}&#x3D;-\omega_{2n}^k$  即对于偶数次单位根$\omega_{n}^{k+n&#x2F;2}&#x3D;-\omega_{n}^k$ ,和$H(x^2)和G(x^2)$ 是偶函数，分别代如$\omega_{n}^{k+n&#x2F;2}和\omega_{n}^k$ 可得到：</p>
+<p>$$<br>A(\omega_{n}^k) &#x3D; G((\omega_{n}^k)^2)+\omega_{n}^k<em>H((\omega_{n}^k)^2) \<br>&#x3D;G(\omega_{n}^{2k})+\omega_{n}^k</em>H(\omega_{n}^{2k}) \<br>&#x3D;G(\omega_{n&#x2F;2}^k)+\omega_{n}^k*H(\omega_{n&#x2F;2}^k))<br>$$<br>和<br>$$<br>A(\omega_{n}^{k+n&#x2F;2}) &#x3D;<br>G(\omega_{n}^{2k+n})+\omega_{n}^{k&#x2F;2}<em>H(\omega_{n}^{2k+n}) \<br>&#x3D;G(\omega_{n&#x2F;2}^k)-\omega_{n}^k</em>H(\omega_{n&#x2F;2}^k))<br>$$<br>因此我们求出了$G(\omega_{n&#x2F;2}^k)和H(\omega_{n&#x2F;2}^k)$后，就可以同时求出 $A(\omega_{n}^{k+n&#x2F;2})和A(\omega_{n}^k) $。于是对G和H分别递归 DFT 即可。</p>
+<h1 id="离散傅里叶逆变换"><a href="#离散傅里叶逆变换" class="headerlink" title="离散傅里叶逆变换"></a>离散傅里叶逆变换</h1><p>用来实现上文黑匣子的另一半，将多项式点值表达式转换成系数表达式。</p>
+<p>对于多项式$ A(x)&#x3D; a_0 +a_1x+a_2x^2+a_3x^3+……+a_{n-1}x^{n-1} $ ，已知 n个点，其 n维点值向量为$ (A(x_0),A(x_1),A(x_2),……，A(x_n-1))$，请求解其n维系数向量 (a<del>0</del>,a<del>1</del>,a<del>2</del>,⋯,a<del>n−1</del>)？</p>
+<p> 1、设 (d<del>0</del>,d<del>1</del>,d<del>2</del>,⋯,d<del>n−1</del>)为 (a<del>0</del>,a<del>1</del>,a<del>2</del>,⋯,a<del>n−1</del>)得到的离散傅里叶变换的结果。</p>
+<p> 构造多项式：</p>
+<p> $F(x) &#x3D; d_0+d_1x+d_2x^2+……+d_{n-1}x^{n-1}$</p>
+<p> 2、设向量$（c_0,c_1,……,c_{n-1}）$,其中c<del>k</del> 为F(x) 在$x&#x3D;\omega_{n}^{-k}$的点值表示，即</p>
+<p>$$<br>c_k &#x3D; \sum_{n&#x3D;0}^{n-1}{d_i}(\omega_{n}^{-k})^i<br>$$</p>
+<p>代入 $d_i &#x3D; \sum_{j&#x3D;0}^{n-1}{a_j}(\omega_{n}^{i})^j$得</p>
+<p>$$<br>c_k &#x3D; \sum_{n&#x3D;0}^{n-1}{[\sum_{j&#x3D;0}^{n-1}{a_j}(\omega_{n}^{i})^j]}(\omega_{n}^{-k})^i<br>$$</p>
+<p> 所以<br>$$<br>c_k &#x3D; \sum_{j&#x3D;0}^{n-1}a_j{\sum_{i&#x3D;0}^{n-1}}(\omega_{n}^{i})^{j-k}<br>$$<br> 令$S(j,k)&#x3D;{\sum_{i&#x3D;0}^{n-1}}(\omega_{n}^{i})^{j-k}$,对其简化：</p>
+<p>设$j-k&#x3D;\delta$<br>$$<br>S(j,k)&#x3D;\omega_{n}^{0}+\omega_{n}^{\delta}+\omega_{n}^{2\delta}+……+\omega_{n}^{(n-1)\delta}<br>$$<br>可见$\omega_{n}^{k}$为等比数列，其公比为$\omega_{n}^{\delta}$</p>
+<blockquote>
+<p>当$\omega_{n}^{\delta}&#x3D;1$即$\delta&#x3D;0$时，$S(j,k)&#x3D;n$,此时 j &#x3D; k；</p>
+<p>当$\omega_{n}^{\delta}  ≠1 $ 即$\delta≠0$时，由等比数列求和公式：</p>
+<p><img src="/../picture/image-20240416163521215.png" srcset="/img/loading.gif" lazyload alt="image-20240416163521215"></p>
+<p>此时 j  ≠ k</p>
+<p>综合可得S(j,k)&#x3D;[j&#x3D;k]*n</p>
+</blockquote>
+<p>带入原式求a<del>k</del> :<br>$$<br>c_k &#x3D; \sum_{j&#x3D;0}^{n-1}a_jS(j,k)&#x3D;\sum_{j&#x3D;0}^{n-1}a_j[j&#x3D;k]*n &#x3D; a_k *n<br>$$<br>所以**a<del>k</del> &#x3D; c<del>k</del>&#x2F;n **</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://www.longluo.me/blog/2022/04/02/fft/#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E9%80%86%E5%8F%98%E6%8D%A2inverse-discrete-fourier-transform">快速傅里叶变换(FFT)算法 | Long Luo’s Life Notes</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31584464">一小时学会快速傅里叶变换（Fast Fourier Transform） - 知乎 (zhihu.com)</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2">Wiki: 快速傅里叶变换</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1rj41157C6/?spm_id_from=333.880.my_history.page.click&vd_source=2bae94d7b27779814e1b356ab2b75f7e">如何快速理解离散傅立叶变换和FFT_哔哩哔哩_bilibili</a></p>
 
                 
               </div>
@@ -370,7 +433,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="print-no-link">#数据结构</a>
+        <a href="/tags/%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/" class="print-no-link">#理论基础</a>
       
     </div>
   
@@ -382,8 +445,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>滑动窗口</div>
-      <div>http://example.com/2024/03/31/滑动窗口/</div>
+      <div>离散傅里叶变换</div>
+      <div>http://example.com/2024/04/14/离散傅里叶变换/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +458,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月31日</div>
+          <div>2024年4月14日</div>
         </div>
       
       
@@ -427,9 +490,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/01/FEDformer-Frequency-Enhanced-Decomposed-Transformer-for-Long-term-Series-Forecasting-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" title="FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读">
+                      <a href="/2024/04/20/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读</span>
+                        <span class="hidden-mobile">回溯算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +500,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/25/%E5%93%88%E5%B8%8C%E8%A1%A8/" title="哈希表">
-                        <span class="hidden-mobile">哈希表</span>
+                      <a href="/2024/04/09/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" title="二分查找">
+                        <span class="hidden-mobile">二分查找</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SuperNiuNiu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="研究背景长期时间序列预测在各种应用(例如,能源、天气、交通、经济等)中是一个长期存在的挑战。 尽管RNN类型的方法( Rangapuram et al., 2018; Flunkert et al., 2017）取得了令人印象深刻的结果，但它们经常遭受梯度消失或爆炸的问题（Pascanu et al., 2013)。极大地限制了它们的性能。继最近在NLP和CV社区((Vaswani et al.,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读">
+<meta property="og:url" content="http://example.com/2024/04/01/FEDformer-Frequency-Enhanced-Decomposed-Transformer-for-Long-term-Series-Forecasting-%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/index.html">
+<meta property="og:site_name" content="SuperNiuNiu">
+<meta property="og:description" content="研究背景长期时间序列预测在各种应用(例如,能源、天气、交通、经济等)中是一个长期存在的挑战。 尽管RNN类型的方法( Rangapuram et al., 2018; Flunkert et al., 2017）取得了令人印象深刻的结果，但它们经常遭受梯度消失或爆炸的问题（Pascanu et al., 2013)。极大地限制了它们的性能。继最近在NLP和CV社区((Vaswani et al.,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/picture/image-20240408132927558.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414145014389.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414145825496.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414150451231.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414153644949.png">
+<meta property="og:image" content="http://example.com/picture/image-20240414165759776.png">
+<meta property="og:image" content="http://example.com/picture/image-20240422154131401.png">
+<meta property="og:image" content="http://example.com/picture/image-20240422155305585.png">
+<meta property="og:image" content="http://example.com/picture/image-20240422160542055.png">
+<meta property="og:image" content="http://example.com/picture/image-20240422160622053.png">
+<meta property="og:image" content="http://example.com/picture/f3342ad8f9f814beecf82b29b0576ef0_720w.webp">
+<meta property="article:published_time" content="2024-04-01T08:16:25.000Z">
+<meta property="article:modified_time" content="2024-04-22T10:43:08.067Z">
+<meta property="article:author" content="SuperNiuNiu">
+<meta property="article:tag" content="文献阅读 时间序列模型">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/picture/image-20240408132927558.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读 - SuperNiuNiu</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SuperNiuNiu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        SuperNiuNiu
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-01 16:16" pubdate>
+          2024年4月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h1><p>长期时间序列预测在各种应用(例如,能源、天气、交通、经济等)中是一个长期存在的挑战。</p>
+<p>尽管RNN类型的方法( Rangapuram et al., 2018; Flunkert et al., 2017）取得了令人印象深刻的结果，但它们经常遭受梯度消失或爆炸的问题（Pascanu et al., 2013)。极大地限制了它们的性能。继最近在NLP和CV社区((Vaswani et al., 2017; Devlin et al., 2019; Dosovitskiy et al., 2021; Rao et al., 2021)中取得成功之后，Transformer ( Vaswani et al , 2017)被引入到时间序列预测中捕捉长期依赖关系，并显示出有希望的结果( Zhou et al . , 2021 ; Wu et al , 2021)。由于较高的计算复杂度和内存需求使得Transformer难以应用于长序列建模，因此大量研究致力于降低Transformer(Li et al., 2019; Kitaev et al., 2020; Zhou et al., 2021; Wang et al., 2020; Xiong et al., 2021; Ma et al., 2021的计算成本。</p>
+<p>尽管基于Transformer的时间序列预测方法取得了一定的进展，但在某些情况下，它们往往无法捕获时间序列的整体特征&#x2F;分布。在图1中，我们在一个真实的ETTm1数据集(Zhou et al., 2021).中比较了真实时间序列和vanilla Transformer方法(Vaswani et al., 2017)预测的真实时间序列。    </p>
+<p>显然，预测的时间序列具有与真实值不同的分布。真值和预测之间的差异可以用Transformer中的逐点注意和预测来解释。由于每个时间步的预测是单独独立进行的，模型很可能无法从整体上保持时间序列的全局性质和统计量。</p>
+<p><img src="/../picture/image-20240408132927558.png" srcset="/img/loading.gif" lazyload alt="image-20240408132927558"></p>
+<h1 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h1><p>为了解决每个时间步的预测是单独独立进行的，模型很可能无法从整体上保持时间序列的全局性质和统计量。本文在这项工作中采用了两种思路。</p>
+<p>第一种思路是将时间序列分析中广泛使用的季节趋势分解方法(Cleveland et al., 1990; Wen et al., 2019),纳入Transformer - based方法。尽管这个想法在(Oreshkin et al., 2019; Wu et al., 2021)之前就已经得到了应用，但根据Kologrov-Smirnov分布测试，我们提出了一种特殊的网络设计，可以有效地使预测的分布接近真实值的分布。</p>
+<p>第二个想法是结合傅里叶分析与基于变压器的方法。我们不是将Transformer应用于时域，而是将其应用于频域，这有助于Transformer更好地捕获时间序列的全局属性。</p>
+<p> 本文结合这两种思想，提出了一种用于长期时间序列预测的频率增强分解变换( Frequency Enhance Decomposition Transformer，简称FEDformer )。</p>
+<h1 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h1><p>长期时间序列预测是一个序列到序列的问题。我们将输入长度记为I，输出长度记为O。我们将D记为序列的隐藏状态。编码器的输入是一个I × D矩阵，解码器有( I &#x2F; 2 + O) × D输入。</p>
+<h2 id="FEDformer结构"><a href="#FEDformer结构" class="headerlink" title="FEDformer结构"></a>FEDformer结构</h2><p><img src="/../picture/image-20240414145014389.png" srcset="/img/loading.gif" lazyload alt="image-20240414145014389"></p>
+<p>包括频率增强块( FEB )、连接编码器和解码器的频率增强注意力( FEA )和混合专家分解块( MOEDecomp )。</p>
+<h4 id="Frequency-Enhanced-Decomposition-Architecture（频率增强分解结构）"><a href="#Frequency-Enhanced-Decomposition-Architecture（频率增强分解结构）" class="headerlink" title="Frequency Enhanced Decomposition Architecture（频率增强分解结构）"></a>Frequency Enhanced Decomposition Architecture（频率增强分解结构）</h4><p>在Autoformer中，分解模块使用的是固定的窗口大小，为了克服固定大小在具有复杂周期和趋势分量的现实情况下的不足，作者设计了一个混合型分解模块，其主要由若干个不同大小的窗口组成，提取到多个不同的分量特征，同时作者还对他们设置了权值，旨在区分不同分量特征对模型的贡献，最终以加权求和的方式获得最终趋势数据。这部分通俗易懂，主要进行了不同尺度的滤波操作获得多种结果，并对他们加权计算最终结果。</p>
+<h4 id="Fourier-enhanced-blocks-and-Wavelet-enhanced-blocks（傅里叶增强模块和小波增强模块）"><a href="#Fourier-enhanced-blocks-and-Wavelet-enhanced-blocks（傅里叶增强模块和小波增强模块）" class="headerlink" title="Fourier enhanced blocks and Wavelet enhanced blocks（傅里叶增强模块和小波增强模块）"></a>Fourier enhanced blocks and Wavelet enhanced blocks（傅里叶增强模块和小波增强模块）</h4><p>在该部分，作者提出将Transformer和傅里叶分析相结合，取代以往将Transformer应用于时间特征提取，改为使用Transformer对傅里叶变换后的频域数据进行特征提取。然而时域数据转化为频域数据带来的是大量的频率分量，是否针对所有数据进行特征提取或者如何选择这些分量将是一个问题。针对这个问题，作者进行了分析和验证。</p>
+<p><em><strong>使用所有频率分量</strong></em> 虽然数据一点不会丢失，但考虑到傅里叶变换的局限性，过多的频率特征带来的将是冗余的信息资源、庞大的机器和时间开销以及过拟合的风险，因此不适用于对所有数据进行特征提取。<br><em><strong>使用部分高频分量</strong></em> 高频分量代表时间序列中变化的突变型特征，确实具有一定的特殊性，然而噪声的存在否定了特殊性存在的合理性，过度地对高频分量进行特征提取，或许模型最终学习到更多噪声的内容，而难以关注时间序列本身。<br><em><strong>使用部分低频分量</strong></em> 低频分量较为平缓，而时间序列中趋势的变化往往与重要事件的发生有关，缺少了高频分量对趋势的影响，时间序列将不具个性，预测的意义也大大降低。<br><em><strong>随机选择分量</strong></em> 作者通过论证得到随机选取分量更有效，大大降低了复杂度。</p>
+<p>该部分内容将被使用在时域转频域后频域分量的选择。<br>该部分借鉴自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43166192/article/details/130186788">https://blog.csdn.net/qq_43166192/article/details/130186788</a></p>
+<h3 id="编码器和解码器"><a href="#编码器和解码器" class="headerlink" title="编码器和解码器"></a>编码器和解码器</h3><p>编码器和解码器都采用多层结构</p>
+<h4 id="编码器"><a href="#编码器" class="headerlink" title="编码器"></a>编码器</h4><p>X^l^ <del>en</del>  &#x3D; Encoder(X^l-1^ <del>en</del>) , l∈{1，…….，N}表示第l个编码层的输出，X^0^ <del>en</del>∈R ^I×D^ 为嵌入的历史序列。</p>
+<p>Encoder( )为：</p>
+<p><img src="/../picture/image-20240414145825496.png" srcset="/img/loading.gif" lazyload alt="image-20240414145825496"></p>
+<p>其中S^l,i^ <del>en</del>，i∈{ 1，2 }分别表示第l层第i个分解块后的季节分量。对于FEB模块，它有两个不同版本的( FEB-f &amp; FEB-w)，分别通过离散傅里叶变换( DFT )和离散小波变换( DWT )机制实现，可以无缝替代自注意力模块。</p>
+<h4 id="解码器"><a href="#解码器" class="headerlink" title="解码器"></a>解码器</h4><p>X^l^ <del>de</del>, T^l^ <del>de</del> &#x3D; Decoder(X^l-1^ <del>de</del>, T^l-1^ <del>de</del> )    其中l∈{ 1，……，M }表示第l个解码层的输出。</p>
+<p>Decoder( )表示为：</p>
+<p> <img src="/../picture/image-20240414150451231.png" srcset="/img/loading.gif" lazyload alt="image-20240414150451231"></p>
+<p>式中：S^l,i^ <del>de</del>, S^l,i^ <del>de</del>，i∈{ 1，2，3 }分别表示第l层第i个分解块后的季节分量和趋势分量</p>
+<p>W<del>l,i</del>  ， i ∈ {1, 2, 3} 表示第i个被提取的趋势分量 T^l,i^ <del>de</del>  </p>
+<p>与FEB类似，FEA有两个不同的版本( FEA-f &amp; FEA - w)，分别通过DFT和DWT投影实现，并带有注意力设计，可以替代交叉注意力模块。</p>
+<p>最终的预测结果是两个细化分量之和W<del>S</del> · X ^M^ <del>de</del> + T^M^ <del>de</del> </p>
+<p> 其中W<del>S</del> 是为了将将深度变换后的季节分量X^M^ <del>de</del> 投影到目标维度。</p>
+<hr>
+<h2 id="模块结构分解"><a href="#模块结构分解" class="headerlink" title="模块结构分解"></a>模块结构分解</h2><h3 id="离散傅里叶变换（DFT）"><a href="#离散傅里叶变换（DFT）" class="headerlink" title="离散傅里叶变换（DFT）"></a>离散傅里叶变换（DFT）</h3><p>令F表示傅里叶变换 ，F^-1^表示傅里叶逆变换。</p>
+<p>给定一个时间域上的实数序列 x<del>n</del> 。</p>
+<p>离散傅里叶变换公式为：<img src="/../picture/image-20240414153644949.png" srcset="/img/loading.gif" lazyload alt="image-20240414153644949"> i为虚数单位</p>
+<p>X<del>l</del> ,l &#x3D; 1，2 .. L是频域中的复数序列。</p>
+<p>傅里叶逆变换公式为<img src="/../picture/image-20240414165759776.png" srcset="/img/loading.gif" lazyload alt="image-20240414165759776"></p>
+<h3 id="Frequency-Enhanced-Block-with-Fourier-Transform-FEB-f"><a href="#Frequency-Enhanced-Block-with-Fourier-Transform-FEB-f" class="headerlink" title="Frequency Enhanced Block with Fourier Transform (FEB-f)"></a>Frequency Enhanced Block with Fourier Transform (FEB-f)</h3><p><img src="/../picture/image-20240422154131401.png" srcset="/img/loading.gif" lazyload alt="image-20240422154131401"></p>
+<p>1、首先对输入X 运用多层感知机进行线性投影， 求得投影后的q , q &#x3D;  X*w</p>
+<p>2、通过快速傅里叶变换，将时域数据q变为频域数据Q</p>
+<p>3、对频域数据进行随机分量只保留随机选择的M个模态，减少信息冗余、降低增效</p>
+<p><img src="/../picture/image-20240422155305585.png" srcset="/img/loading.gif" lazyload alt="image-20240422155305585"></p>
+<p>4、随机初始化矩阵R，并与随机选择的频率分量相乘；</p>
+<p>令 $ Y &#x3D; Q⊙C, Y_{m,d_o}&#x3D;\sum_{d_i&#x3D;o}^DQ_{m,d_i}·R_{d_i,d_o,m}$</p>
+<p>$d_i&#x3D; 1,2,3……D，d_o&#x3D;1，2，3，……，D$</p>
+<p>5、为了便于后续进行傅里叶逆变换，需要将数据以0补足维度；<br>6、通过傅里叶逆变换，由频域数据转换为时域数据。</p>
+<p><img src="/../picture/image-20240422160542055.png" srcset="/img/loading.gif" lazyload alt="image-20240422160542055"></p>
+<h3 id="Frequency-Enhanced-Attention-with-Fourier-Transform-FEA-f"><a href="#Frequency-Enhanced-Attention-with-Fourier-Transform-FEA-f" class="headerlink" title="Frequency Enhanced Attention with Fourier Transform (FEA-f)"></a>Frequency Enhanced Attention with Fourier Transform (FEA-f)</h3><p><img src="/../picture/image-20240422160622053.png" srcset="/img/loading.gif" lazyload alt="image-20240422160622053"></p>
+<p>1、由Encoder经过多层感知机获得v和k，由Decoder经过多层感知机获得q</p>
+<p>$q &#x3D; x_{en} · w_q$     	$k &#x3D; x_{de}·w_k$ 	$v &#x3D; x_{de}·w_v,$	 $w_k, w_v ∈ R^{D×D}.$</p>
+<p>2、 q 、k、v 在快速傅里叶变换下由时域数据转换为频域数据，对他们随机选择分量 </p>
+<p>3、接下来的步骤和传统注意力机制一样：k q相乘后经激活函数再与v相乘；<br>4、为了便于后续进行傅里叶逆变换，需要将数据以0补足维度；<br>5、通过傅里叶逆变换，由频域数据转换为时域数据。</p>
+<h3 id="小波变化的频率增强块（FEB-w）"><a href="#小波变化的频率增强块（FEB-w）" class="headerlink" title="小波变化的频率增强块（FEB-w）"></a>小波变化的频率增强块（FEB-w）</h3><p>由于傅里叶变换存在明显的局限性：</p>
+<p>它只能获取<strong>一段信号总体上包含哪些频率的成分</strong>，但是<strong>对各成分出现的时刻并无所知</strong>。因此时域相差很大的两个信号，可能频谱图一样。</p>
+<p>因此使用小波变换把傅里叶变换的基给换了——将<strong>无限长的三角函数基</strong>换成了<strong>有限长的会衰减的小波基</strong>。这样<strong>不仅能够获取频率</strong>，还可以<strong>定位到时间</strong>了.</p>
+<p>公式如下：</p>
+<p><img src="/../picture/f3342ad8f9f814beecf82b29b0576ef0_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>不同于傅里叶变换，变量只有频率ω，小波变换有两个变量：尺度a（scale）和平移量 τ（translation）。<strong>尺度</strong>a控制小波函数的<strong>伸缩</strong>，<strong>平移量</strong> τ控制小波函数的<strong>平移</strong>。<strong>尺度</strong>就对应于<strong>频率</strong>（反比），<strong>平移量</strong> τ就对应于<strong>时间</strong>。<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22864189/answer/40772083">（具体内容参考此文）</a></p>
+<p>文章借鉴：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43166192/article/details/130186788">https://blog.csdn.net/qq_43166192/article/details/130186788</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B/" class="print-no-link">#文献阅读 时间序列模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting 文献阅读</div>
+      <div>http://example.com/2024/04/01/FEDformer-Frequency-Enhanced-Decomposed-Transformer-for-Long-term-Series-Forecasting-文献阅读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SuperNiuNiu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/01/%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97%E7%AE%97%E6%B3%95/" title="下一个排列算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">下一个排列算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/31/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" title="滑动窗口">
+                        <span class="hidden-mobile">滑动窗口</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
