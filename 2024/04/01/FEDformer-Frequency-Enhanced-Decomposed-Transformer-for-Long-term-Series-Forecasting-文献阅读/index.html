@@ -34,8 +34,10 @@
 <meta property="og:image" content="http://example.com/picture/image-20240422160542055.png">
 <meta property="og:image" content="http://example.com/picture/image-20240422160622053.png">
 <meta property="og:image" content="http://example.com/picture/f3342ad8f9f814beecf82b29b0576ef0_720w.webp">
+<meta property="og:image" content="http://example.com/picture/image-20240430155402670.png">
+<meta property="og:image" content="http://example.com/picture/image-20240430160408594.png">
 <meta property="article:published_time" content="2024-04-01T08:16:25.000Z">
-<meta property="article:modified_time" content="2024-04-22T10:43:08.067Z">
+<meta property="article:modified_time" content="2024-04-30T08:19:51.176Z">
 <meta property="article:author" content="SuperNiuNiu">
 <meta property="article:tag" content="文献阅读 时间序列模型">
 <meta name="twitter:card" content="summary_large_image">
@@ -266,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.9k 字
         
       </span>
     
@@ -277,7 +279,7 @@
         
         
         
-          21 分钟
+          25 分钟
         
       </span>
     
@@ -377,12 +379,22 @@
 <p>$q &#x3D; x_{en} · w_q$     	$k &#x3D; x_{de}·w_k$ 	$v &#x3D; x_{de}·w_v,$	 $w_k, w_v ∈ R^{D×D}.$</p>
 <p>2、 q 、k、v 在快速傅里叶变换下由时域数据转换为频域数据，对他们随机选择分量 </p>
 <p>3、接下来的步骤和传统注意力机制一样：k q相乘后经激活函数再与v相乘；<br>4、为了便于后续进行傅里叶逆变换，需要将数据以0补足维度；<br>5、通过傅里叶逆变换，由频域数据转换为时域数据。</p>
-<h3 id="小波变化的频率增强块（FEB-w）"><a href="#小波变化的频率增强块（FEB-w）" class="headerlink" title="小波变化的频率增强块（FEB-w）"></a>小波变化的频率增强块（FEB-w）</h3><p>由于傅里叶变换存在明显的局限性：</p>
+<h3 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h3><p>由于傅里叶变换存在明显的局限性：</p>
 <p>它只能获取<strong>一段信号总体上包含哪些频率的成分</strong>，但是<strong>对各成分出现的时刻并无所知</strong>。因此时域相差很大的两个信号，可能频谱图一样。</p>
 <p>因此使用小波变换把傅里叶变换的基给换了——将<strong>无限长的三角函数基</strong>换成了<strong>有限长的会衰减的小波基</strong>。这样<strong>不仅能够获取频率</strong>，还可以<strong>定位到时间</strong>了.</p>
 <p>公式如下：</p>
 <p><img src="/../picture/f3342ad8f9f814beecf82b29b0576ef0_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>不同于傅里叶变换，变量只有频率ω，小波变换有两个变量：尺度a（scale）和平移量 τ（translation）。<strong>尺度</strong>a控制小波函数的<strong>伸缩</strong>，<strong>平移量</strong> τ控制小波函数的<strong>平移</strong>。<strong>尺度</strong>就对应于<strong>频率</strong>（反比），<strong>平移量</strong> τ就对应于<strong>时间</strong>。<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22864189/answer/40772083">（具体内容参考此文）</a></p>
+<h3 id="小波变化的频率增强块（FEB-w）"><a href="#小波变化的频率增强块（FEB-w）" class="headerlink" title="小波变化的频率增强块（FEB-w）"></a>小波变化的频率增强块（FEB-w）</h3><p><img src="/../picture/image-20240430155402670.png" srcset="/img/loading.gif" lazyload alt="image-20240430155402670"></p>
+<p>1、利用固定的Legendre小波基矩阵对输入值进行分解，得到<strong>高频、低频和剩余三个部分</strong></p>
+<p>2、运用FEB-f模块对三个部分分别处理。对于每个周期L，得出一个高频张量Ud(L)、低频张量Us(L)和原始低频张量X(L+1)</p>
+<p>3、采用重建模块融合多组数据进行数据重建如右图所示。</p>
+<p>对于每个循环L，将分解部分产生的X(L+1),Us(L)和Ud(L)进行组合，产生X(L)用于下一个重建循环</p>
+<p>对于每个周期，信号张量的长度维度增加2倍</p>
+<h3 id="基于小波变换的频率增强注意力-FEA-w"><a href="#基于小波变换的频率增强注意力-FEA-w" class="headerlink" title="基于小波变换的频率增强注意力 (FEA-w)"></a>基于小波变换的频率增强注意力 (FEA-w)</h3><p><img src="/../picture/image-20240430160408594.png" srcset="/img/loading.gif" lazyload alt="image-20240430160408594"></p>
+<p>与FEB-w类似，使用相通的分解矩阵对<strong>k q v <strong>分解为三对， 对每对</strong>q k v</strong>运用FEA-f进行特征提取。</p>
+<p>最后再进行数据重构与FEB-w类似。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Autoformer可以认为是将时序序列分解为多个时序子序列进行特征提取，而FEDformer则是从频域的角度进行提取，两个在具有相似模型框架的同时又有着较大的不同。通过多个实验，后者展现出优异的特征提取能力，进而在长时序中具有优异的性能。<br>作者在Autoformer的基础上进行深入创新，融入了傅里叶变换的同时，进一步探索了融入小波变换的可能性，更加证明了合理使用传统领域的发现，将其与深度学习相结合，往往会有着不错的效果。通过学习发现，小波变换部分的模块与傅里叶模块有着直接相关，因此小波模型的运行不管是空间还是时间都将是一大开销。</p>
 <p>文章借鉴：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43166192/article/details/130186788">https://blog.csdn.net/qq_43166192/article/details/130186788</a></p>
 
